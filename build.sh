@@ -1,1 +1,1 @@
-docker build -t sockyjam/phpfpm
+docker build . -t sockyjam/phpfpm
