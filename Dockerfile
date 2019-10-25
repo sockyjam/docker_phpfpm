@@ -50,18 +50,18 @@ RUN apt-get update \
     #&& docker-php-ext-install pdo_dblib \
     #&& docker-php-ext-install pdo_oci \
     #&& docker-php-ext-install pdo_odbc \
-    #&& docker-php-ext-install pdo_pgsql \
-    #&& docker-php-ext-install pgsql \
+    && docker-php-ext-install pdo_pgsql \
+    && docker-php-ext-install pgsql \
     #&& docker-php-ext-install oci8 \
     #&& docker-php-ext-install odbc \
     #&& docker-php-ext-install dba \
     #&& docker-php-ext-install interbase \
     #&& :\
-    #&& apt-get install -y libmcrypt-dev \
-    #&& docker-php-ext-install mcrypt \
+    && apt-get install -y libmcrypt-dev \
+    && docker-php-ext-install mcrypt \
     #&& :\
-    #&& apt-get install -y curl \
-    #&& apt-get install -y libcurl3 \
+    && apt-get install -y curl \
+    && apt-get install -y libcurl3 \
     #&& apt-get install -y libcurl4-openssl-dev \
     #&& docker-php-ext-install curl \
     #&& :\
@@ -101,23 +101,23 @@ RUN apt-get update \
 
 
 # 安装swoole扩展
-RUN apt install -y nghttp2 openssl libssl-dev libpcre3-dev \
-    && pecl install swoole
+#RUN apt install -y nghttp2 openssl libssl-dev libpcre3-dev \
+#    && pecl install swoole
 
 # 安装redis扩展
-COPY ./ext/redis-4.1.0.tgz /tmp/redis.tgz
-RUN mkdir -p /tmp/redis \
-    && tar -xf /tmp/redis.tgz -C /tmp/redis --strip-components=1 \
-    && rm /tmp/redis.tgz \
-    && docker-php-ext-configure /tmp/redis --enable-redis \
-    && docker-php-ext-install /tmp/redis \
-    && rm -r /tmp/redis
+#COPY ./ext/redis-4.1.0.tgz /tmp/redis.tgz
+#RUN mkdir -p /tmp/redis \
+#    && tar -xf /tmp/redis.tgz -C /tmp/redis --strip-components=1 \
+#    && rm /tmp/redis.tgz \
+#    && docker-php-ext-configure /tmp/redis --enable-redis \
+#    && docker-php-ext-install /tmp/redis \
+#    && rm -r /tmp/redis
 
 # 安装Xdebug扩展
-COPY ./ext/xdebug-2.6.0.tgz /tmp/xdebug.tgz
-RUN mkdir -p /tmp/xdebug \
-    && tar -xf /tmp/xdebug.tgz -C /tmp/xdebug --strip-components=1 \
-    && rm /tmp/xdebug.tgz \
-    && docker-php-ext-configure /tmp/xdebug --enable-xdebug \
-    && docker-php-ext-install /tmp/xdebug \
-    && rm -r /tmp/xdebug
+#COPY ./ext/xdebug-2.6.0.tgz /tmp/xdebug.tgz
+#RUN mkdir -p /tmp/xdebug \
+#    && tar -xf /tmp/xdebug.tgz -C /tmp/xdebug --strip-components=1 \
+#    && rm /tmp/xdebug.tgz \
+#    && docker-php-ext-configure /tmp/xdebug --enable-xdebug \
+#    && docker-php-ext-install /tmp/xdebug \
+#    && rm -r /tmp/xdebug
